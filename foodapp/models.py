@@ -45,8 +45,8 @@ class Menu(models.Model):
 
 
 class Order(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='orders')
-    menu = models.ForeignKey(Menu, on_delete=models.CASCADE, related_name='orders')
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='customer')
+    menu = models.ForeignKey(Menu, on_delete=models.CASCADE, related_name='menu')
     orderType = models.CharField(max_length=50, null=False)
     time_of_arrival = models.DateTimeField(
         default=timezone.now)
@@ -64,4 +64,5 @@ class Order(models.Model):
         self.save()
 
     def __str__(self):
-        return '{} ordered {} and arrives {} for a {}'.format(self.customer, self.menu, self.time_of_arrival, self.orderType)
+        return '{} ordered {} and arrives {} for a {}'.format(self.customer, self.menu, self.time_of_arrival,
+                                                              self.orderType)
